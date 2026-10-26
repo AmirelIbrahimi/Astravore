@@ -1,0 +1,37 @@
+# Secrets / environment
+wp-config.php
+.env
+.envrc
+
+# Local-generated
+.htaccess
+local-xdebuginfo.php
+
+# WordPress core
+/wp-admin/
+/wp-includes/
+/index.php
+/license.txt
+/readme.html
+/wp-*.php
+/xmlrpc.php
+
+# wp-content: ignore everything not yours
+/wp-content/index.php
+/wp-content/uploads/
+/wp-content/upgrade/
+/wp-content/cache/
+/wp-content/plugins/*
+!/wp-content/plugins/index.php
+/wp-content/themes/twenty*/
+
+# Logs and dependencies
+*.log
+node_modules/
+vendor/
+
+# OS / editor
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
