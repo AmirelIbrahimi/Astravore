@@ -37,13 +37,18 @@ get_header();
 	</section>
 
 	<section id="intro" class="section intro reveal">
-		<h2 class="section__title"><?php esc_html_e( 'The Moon Leaves a Mark', 'astravore' ); ?></h2>
-		<p class="intro__text">
-			<?php esc_html_e( 'Those who receive the moon\'s light carry its phase on their body. Full or hollow, bright or barely there, the sign decides how much light a person can hold and how much of it they can bear to spend.', 'astravore' ); ?>
-		</p>
-		<p class="intro__text">
-			<?php esc_html_e( 'And above them all, there is the Sun.', 'astravore' ); ?>
-		</p>
+		<?php if ( is_page() && have_posts() ) : the_post(); ?>
+			<h2 class="section__title"><?php the_title(); ?></h2>
+			<div class="intro__text">
+				<?php the_content(); ?>
+			</div>
+		<?php else : ?>
+			<h2 class="section__title"><?php esc_html_e( 'The Moon Leaves a Mark', 'astravore' ); ?></h2>
+			<div class="intro__text">
+				<p><?php esc_html_e( 'Those who receive the moon\'s light carry its phase on their body. Full or hollow, bright or barely there, the sign decides how much light a person can hold and how much of it they can bear to spend.', 'astravore' ); ?></p>
+				<p><?php esc_html_e( 'And above them all, there is the Sun.', 'astravore' ); ?></p>
+			</div>
+		<?php endif; ?>
 
 		<ul class="moons">
 			<?php foreach ( $moonsigns as $sign ) : ?>
