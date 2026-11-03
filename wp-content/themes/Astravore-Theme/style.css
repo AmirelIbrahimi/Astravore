@@ -312,7 +312,7 @@ h3 {
 	list-style: none;
 }
 
-.moons__item {
+.moons__link {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -398,6 +398,7 @@ h3 {
 }
 
 .card {
+	position: relative;
 	background: var(--bg-raised);
 	border: 1px solid var(--line);
 	transition: border-color 0.3s, transform 0.3s;
@@ -408,10 +409,41 @@ h3 {
 	transform: translateY(-3px);
 }
 
+.card__image {
+	display: block;
+}
+
 .card__image img {
 	width: 100%;
 	aspect-ratio: 16 / 10;
 	object-fit: cover;
+}
+
+/* Big question mark shown when a character has no photo. */
+.image-placeholder {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	aspect-ratio: 16 / 10;
+	background: radial-gradient(circle at 50% 40%, #1a1e35 0%, var(--bg) 75%);
+	border-bottom: 1px solid var(--line);
+	font-family: var(--font-display);
+	font-size: 6rem;
+	line-height: 1;
+	color: var(--gold);
+	opacity: 0.7;
+	text-shadow: 0 0 2rem rgba(201, 164, 92, 0.35);
+	transition: opacity 0.4s;
+}
+
+.card:hover .image-placeholder {
+	opacity: 1;
+}
+
+.entry__image .image-placeholder {
+	font-size: 10rem;
+	border: 1px solid var(--line);
 }
 
 .card__body {
@@ -432,6 +464,49 @@ h3 {
 
 .card__title a {
 	color: var(--moon);
+}
+
+/* Stretch the title link over the whole card so the entire card is clickable. */
+.card__title a::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+}
+
+/* Keep the category links usable above the stretched title link. */
+.card__body a[rel~="category"] {
+	position: relative;
+	z-index: 1;
+}
+
+/* Tags: small clickable labels, used on cards and single posts. */
+.tag-list {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+	margin: 1rem 0 0;
+}
+
+.tag-list a {
+	position: relative;
+	z-index: 1;
+	padding: 0.2rem 0.7rem;
+	border: 1px solid var(--line);
+	font-size: 0.65rem;
+	letter-spacing: 0.15em;
+	text-transform: uppercase;
+	color: var(--text-dim);
+}
+
+.tag-list a::before {
+	content: "#";
+	margin-right: 0.2rem;
+	color: var(--gold);
+}
+
+.tag-list a:hover {
+	border-color: var(--gold);
+	color: var(--gold-bright);
 }
 
 .card__excerpt {
@@ -505,6 +580,7 @@ h3 {
 }
 
 .moonsign {
+	position: relative;
 	display: grid;
 	grid-template-columns: 4.5rem 1fr;
 	gap: 2rem;
@@ -555,6 +631,13 @@ h3 {
 
 .moonsign__name a {
 	color: inherit;
+}
+
+/* Stretch the name link over the whole card so the entire card is clickable. */
+.moonsign__name a::after {
+	content: "";
+	position: absolute;
+	inset: 0;
 }
 
 .moonsign__name a:hover {
@@ -620,7 +703,6 @@ h3 {
 
 .entry__tags {
 	margin-top: 2.5rem;
-	font-size: 0.8rem;
 }
 
 .post-navigation .nav-links {

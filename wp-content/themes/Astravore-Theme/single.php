@@ -19,15 +19,15 @@ get_header();
 				</p>
 			</header>
 
-			<?php if ( has_post_thumbnail() ) : ?>
-				<div class="entry__image"><?php the_post_thumbnail( 'large' ); ?></div>
-			<?php endif; ?>
+			<div class="entry__image">
+				<?php get_template_part( 'template-parts/character-image', null, array( 'size' => 'large' ) ); ?>
+			</div>
 
 			<div class="entry__content">
 				<?php the_content(); ?>
 			</div>
 
-			<?php the_tags( '<p class="entry__tags">', ' ', '</p>' ); ?>
+			<?php the_tags( '<p class="tag-list entry__tags">', '', '</p>' ); ?>
 		</article>
 
 		<?php

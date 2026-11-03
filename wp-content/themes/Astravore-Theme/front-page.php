@@ -52,10 +52,20 @@ get_header();
 
 		<ul class="moons">
 			<?php foreach ( $moonsigns as $sign ) : ?>
+				<?php
+				// Link to the moonsign's category when it exists (slug is "full-moon").
+				$category = get_category_by_slug( sanitize_title( $sign['name'] ) );
+				?>
 				<li class="moons__item">
-					<span class="moon moon--<?php echo esc_attr( $sign['class'] ); ?>" aria-hidden="true"></span>
-					<span class="moons__name"><?php echo esc_html( $sign['name'] ); ?></span>
-					<span class="moons__points"><?php echo esc_html( $sign['points'] ); ?></span>
+					<?php if ( $category ) : ?>
+						<a class="moons__link" href="<?php echo esc_url( get_category_link( $category ) ); ?>">
+					<?php else : ?>
+						<span class="moons__link">
+					<?php endif; ?>
+						<span class="moon moon--<?php echo esc_attr( $sign['class'] ); ?>" aria-hidden="true"></span>
+						<span class="moons__name"><?php echo esc_html( $sign['name'] ); ?></span>
+						<span class="moons__points"><?php echo esc_html( $sign['points'] ); ?></span>
+					<?php echo $category ? '</a>' : '</span>'; ?>
 				</li>
 			<?php endforeach; ?>
 		</ul>
