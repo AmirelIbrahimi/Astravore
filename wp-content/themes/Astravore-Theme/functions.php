@@ -40,6 +40,22 @@ function astravore_enqueue_assets() {
 }
 add_action( 'wp_enqueue_scripts', 'astravore_enqueue_assets' );
 
+function astravore_widgets_init() {
+	register_sidebar( array(
+		'name'          => __( 'Footer widgets', 'astravore' ),
+		'id'            => 'footer-widgets',
+		'description'   => __( 'Shown in the footer.', 'astravore' ),
+		'before_widget' => '<section id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</section>',
+		'before_title'  => '<h2 class="widget__title">',
+		'after_title'   => '</h2>',
+	) );
+}
+add_action( 'widgets_init', 'astravore_widgets_init' );
+
+// Show "Full Moon" instead of "Category: Full Moon" in archive titles.
+add_filter( 'get_the_archive_title_prefix', '__return_empty_string' );
+
 /**
  * Fallback for the primary menu until one is created under Appearance > Menus.
  */

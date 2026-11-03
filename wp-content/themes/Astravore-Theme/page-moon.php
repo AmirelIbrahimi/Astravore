@@ -32,12 +32,20 @@ get_header();
 	<?php endwhile; ?>
 
 	<div class="moonsign-list">
-		<?php foreach ( $moonsigns as $sign ) : ?>
+		<?php
+		foreach ( $moonsigns as $sign ) :
+			// Each moonsign has a category with the same name (slug e.g. "full-moon").
+			$category = get_category_by_slug( sanitize_title( $sign['name'] ) );
+			?>
 			<section class="moonsign">
 				<span class="moon moon--<?php echo esc_attr( $sign['class'] ); ?>" aria-hidden="true"></span>
 				<div class="moonsign__body">
 					<h2 class="moonsign__name">
-						<?php echo esc_html( $sign['name'] ); ?>
+						<?php if ( $category ) : ?>
+							<a href="<?php echo esc_url( get_category_link( $category ) ); ?>"><?php echo esc_html( $sign['name'] ); ?></a>
+						<?php else : ?>
+							<?php echo esc_html( $sign['name'] ); ?>
+						<?php endif; ?>
 						<span class="moonsign__total"><?php echo esc_html( $sign['total'] ); ?></span>
 					</h2>
 					<p class="moonsign__stats">
@@ -45,6 +53,14 @@ get_header();
 						<span><?php esc_html_e( 'Output', 'astravore' ); ?>: <?php echo esc_html( $sign['output'] ); ?></span>
 					</p>
 					<p class="moonsign__text"><?php echo esc_html( $placeholder ); ?></p>
+					<?php if ( $category ) : ?>
+						<a class="moonsign__link" href="<?php echo esc_url( get_category_link( $category ) ); ?>">
+							<?php
+							/* translators: %d: number of characters with this moonsign */
+							echo esc_html( sprintf( _n( 'View %d character', 'View %d characters', $category->count, 'astravore' ), $category->count ) );
+							?>
+						</a>
+					<?php endif; ?>
 				</div>
 			</section>
 		<?php endforeach; ?>

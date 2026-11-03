@@ -3,7 +3,6 @@ Theme Name: Astravore
 Author: Amir el Ibrahimi
 */
 
-/* ---------- Tokens ---------- */
 :root {
 	--bg: #07080f;
 	--bg-raised: #0e1020;
@@ -488,7 +487,8 @@ h3 {
 }
 
 /* ---------- Moon page ---------- */
-.moon-page {
+.moon-page,
+.archive-page {
 	max-width: var(--content-w);
 	margin: 0 auto;
 	padding: calc(var(--header-h) + 4rem) 1.5rem 6rem;
@@ -553,6 +553,22 @@ h3 {
 	color: var(--text-dim);
 }
 
+.moonsign__name a {
+	color: inherit;
+}
+
+.moonsign__name a:hover {
+	color: var(--gold-bright);
+}
+
+.moonsign__link {
+	display: inline-block;
+	margin-top: 1rem;
+	font-size: 0.72rem;
+	letter-spacing: 0.2em;
+	text-transform: uppercase;
+}
+
 @media (max-width: 720px) {
 	.moonsign {
 		grid-template-columns: 1fr;
@@ -564,6 +580,137 @@ h3 {
 	.moonsign__stats {
 		justify-content: center;
 	}
+}
+
+/* ---------- Single post ---------- */
+.entry__header {
+	margin-bottom: 2.5rem;
+	text-align: center;
+}
+
+.entry__header .cat-links,
+.entry__header > a[rel~="category"] {
+	font-size: 0.75rem;
+	letter-spacing: 0.3em;
+	text-transform: uppercase;
+}
+
+.entry__title {
+	margin: 0.75rem 0 0.5rem;
+	font-size: clamp(1.8rem, 4vw, 2.8rem);
+	text-transform: uppercase;
+}
+
+.entry__meta {
+	margin: 0;
+	font-size: 0.8rem;
+	letter-spacing: 0.15em;
+	text-transform: uppercase;
+	color: var(--text-dim);
+}
+
+.entry__image {
+	margin-bottom: 2.5rem;
+}
+
+.entry__content {
+	font-family: var(--font-serif);
+	font-size: 1.25rem;
+}
+
+.entry__tags {
+	margin-top: 2.5rem;
+	font-size: 0.8rem;
+}
+
+.post-navigation .nav-links {
+	display: flex;
+	justify-content: space-between;
+	gap: 1.5rem;
+	margin-top: 4rem;
+	padding-top: 2rem;
+	border-top: 1px solid var(--line);
+	font-size: 0.85rem;
+}
+
+.site-footer__widgets {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 2rem;
+	margin-bottom: 2.5rem;
+}
+
+.widget__title {
+	font-size: 0.8rem;
+	letter-spacing: 0.25em;
+	text-transform: uppercase;
+	color: var(--gold);
+}
+
+/* ---------- Archive ---------- */
+.archive-page__header {
+	text-align: center;
+}
+
+.archive-page__moon {
+	margin: 0 auto 1.25rem;
+}
+
+.archive-page__avatar {
+	margin: 0 auto 1rem;
+	border-radius: 50%;
+	border: 1px solid var(--line);
+}
+
+.archive-page__eyebrow {
+	margin: 0 0 0.75rem;
+	font-size: 0.75rem;
+	letter-spacing: 0.35em;
+	text-transform: uppercase;
+	color: var(--gold);
+}
+
+.archive-page__description {
+	max-width: 38rem;
+	margin: 1.5rem auto 0;
+	font-family: var(--font-serif);
+	font-size: 1.3rem;
+	color: var(--text-dim);
+}
+
+.archive-page__empty {
+	margin-top: 3rem;
+	text-align: center;
+	font-family: var(--font-serif);
+	font-style: italic;
+	font-size: 1.3rem;
+	color: var(--text-dim);
+}
+
+.pagination {
+	margin-top: 3rem;
+}
+
+.pagination .nav-links {
+	display: flex;
+	justify-content: center;
+	gap: 0.75rem;
+}
+
+.pagination .page-numbers {
+	padding: 0.4rem 1rem;
+	border: 1px solid var(--line);
+	font-size: 0.75rem;
+	letter-spacing: 0.15em;
+	text-transform: uppercase;
+	color: var(--text-dim);
+}
+
+.pagination a.page-numbers:hover,
+.pagination .page-numbers.current {
+	border-color: var(--gold);
+	color: var(--gold-bright);
 }
 
 /* ---------- 404 ---------- */
